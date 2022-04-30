@@ -118,28 +118,6 @@ body {
   top: -36px;
 }
 
-.unit-conversion-link-celsius:hover {
-  color: #272142;
-  cursor: default;
-  text-decoration: none;
-}
-
-.unit-conversion-link-celsius {
-  color: #272142;
-  cursor: default;
-  text-decoration: none;
-}
-
-.unit-conversion-link-fahreinheit:hover {
-  color: rgba(136, 93, 241, 0.4);
-  text-decoration: none;
-}
-
-.unit-conversion-link-fahreinheit {
-  color: rgba(136, 93, 241, 0.4);
-  text-decoration: none;
-}
-
 .signature {
   color: #a9a6b3;
   font-size: 12px;

@@ -53,12 +53,8 @@ function displayData(response) {
   );
   weatherIconElement.setAttribute("alt", weatherIconDescription);
 
-  celsiusTemperature = Math.round(response.data.main.temp);
-
   let temperatureElement = document.querySelector("#value-temperature");
-  temperatureElement.innerHTML = celsiusTemperature;
-
-  displayCelsiusTemperature();
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
 }
 
 function makeApiCall(city) {
@@ -75,35 +71,7 @@ function handleSubmit(event) {
   makeApiCall(typedCity);
 }
 
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#value-temperature");
-  fahreinheitLinkElement.classList.remove("unit-conversion-link-fahreinheit");
-  fahreinheitLinkElement.classList.add("unit-conversion-link-celsius");
-  celsiusLinkElement.classList.remove("unit-conversion-link-celsius");
-  celsiusLinkElement.classList.add("unit-conversion-link-fahreinheit");
-  let fahreinheitTemperature = Math.round(celsiusTemperature * 1.8 + 32);
-  temperatureElement.innerHTML = fahreinheitTemperature;
-}
-
-function displayCelsiusTemperature() {
-  let temperatureElement = document.querySelector("#value-temperature");
-  celsiusLinkElement.classList.remove("unit-conversion-link-fahreinheit");
-  celsiusLinkElement.classList.add("unit-conversion-link-celsius");
-  fahreinheitLinkElement.classList.remove("unit-conversion-link-celsius");
-  fahreinheitLinkElement.classList.add("unit-conversion-link-fahreinheit");
-  temperatureElement.innerHTML = celsiusTemperature;
-}
-
-let celsiusTemperature = null;
-
 let formElement = document.querySelector("#search-form");
 formElement.addEventListener("submit", handleSubmit);
-
-let fahreinheitLinkElement = document.querySelector("#fahreinheit-link");
-fahreinheitLinkElement.addEventListener("click", displayFahrenheitTemperature);
-
-let celsiusLinkElement = document.querySelector("#celsius-link");
-celsiusLinkElement.addEventListener("click", displayCelsiusTemperature);
 
 makeApiCall(`New York`);
