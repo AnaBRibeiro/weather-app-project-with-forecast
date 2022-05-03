@@ -22,7 +22,7 @@ function displayDayAndTime(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
-function displayData(response) {
+function displayCurrentData(response) {
   let cityNameElement = document.querySelector("#city-name");
   cityNameElement.innerHTML = response.data.name;
 
@@ -61,7 +61,7 @@ function makeApiCall(city) {
   let apiKey = `6e2e6ba4445c2a3f7c96186354d36ba3`;
   let unit = `metric`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&&units=${unit}`;
-  axios.get(apiUrl).then(displayData);
+  axios.get(apiUrl).then(displayCurrentData);
 }
 
 function handleSubmit(event) {
@@ -71,7 +71,28 @@ function handleSubmit(event) {
   makeApiCall(typedCity);
 }
 
+function displayForecastData() {
+  let weatherForecastElement = document.querySelector("#weather-forecast");
+  let weatherForecastHTML = `<div class="row">`;
+  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
+  days.forEach(function (day) {
+    weatherForecastHTML =
+      weatherForecastHTML +
+      `<div class="col-2">
+                <div class="day">${day}</div>
+                <div class="weather-forecast-icon">☁</div>
+                <div>
+                  <span class="value-temperature-forecast-max">12º</span>
+                  <span class="value-temperature-forecast-min">7º</span>
+                </div>
+              </div>`;
+  });
+  weatherForecastHTML = weatherForecastHTML + `</div>`;
+  weatherForecastElement.innerHTML = weatherForecastHTML;
+}
+
 let formElement = document.querySelector("#search-form");
 formElement.addEventListener("submit", handleSubmit);
 
 makeApiCall(`New York`);
+displayForecastData();
