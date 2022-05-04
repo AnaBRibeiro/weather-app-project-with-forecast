@@ -46,13 +46,12 @@ function displayForecastData(response) {
     if (index < 5) {
       weatherForecastHTML =
         weatherForecastHTML +
-        `<div class="col-2">
+        `<div class="col">
                 <div class="day">${getForecastDay(forecastDay.dt)}</div>
-                <div class="weather-forecast-icon">
-                <img
-                  src="https://openweathermap.org/img/wn/${
-                    forecastDay.weather[0].icon
-                  }@2x.png"
+                <div>
+                <img class="weather-forecast-icon" src="https://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png"
                   alt=""/>
                 </div>
                 <div>
